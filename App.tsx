@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import axios from "axios";
 import * as Location from "expo-location";
-import Loading from "./src/components/Loading";
-import Weather from "./src/components/Weather";
-import { WEATHER_API_KEY } from "./src/constants/API_KEY";
+import Loading from "@components/Loading";
+import Weather from "@components/Weather";
+import { WEATHER_API_KEY } from "@constants/API_KEY";
+import { weatherOptions } from "@constants/index";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [condition, setCondition] = useState("");
   const [temp, setTemp] = useState(0);
 
-  const getWeather = async (latitude, longitude) => {
+  const getWeather = async (latitude: number, longitude: number) => {
     const {
       data: {
         main: { temp },
@@ -46,7 +47,7 @@ const App = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <Weather condition={condition} temp={Math.round(temp)} />
+    <Weather condition={condition as keyof typeof weatherOptions} temp={Math.round(temp)} />
   );
 };
 

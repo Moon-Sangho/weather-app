@@ -13,4 +13,4 @@ web-build/
 .DS_Store
 
 # API_KEY
-API_KEY.js
+API_KEY.ts

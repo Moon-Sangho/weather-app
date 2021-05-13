@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, StatusBar, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "@emotion/native";
-import { defaultGradient } from "../constants";
+import { defaultGradient } from "@constants/index";
 
 const Loading = () => {
   return (
     <LinearGradient colors={defaultGradient} style={styles.container}>
       <StatusBar barStyle="light-content" />
       <HalfContainer>
-        <ActivityIndicator style={styles.spinner} color="fff" />
+        <ActivityIndicator style={styles.spinner} color="fff" size="large" />
       </HalfContainer>
       <HalfContainer>
         <LoadingText>Getting the weather</LoadingText>

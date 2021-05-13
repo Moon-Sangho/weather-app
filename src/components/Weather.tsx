@@ -1,12 +1,17 @@
 import React from "react";
 import { StyleSheet, StatusBar } from "react-native";
-import PropTypes from "prop-types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "@emotion/native";
-import { weatherOptions, defaultGradient } from "../constants";
+import { weatherOptions, defaultGradient } from "@constants/index";
 
-const Weather = ({ condition, temp }) => {
+interface Props {
+  condition: keyof typeof weatherOptions;
+  temp: number;
+}
+
+const Weather = ({ condition, temp }: Props) => {
+
   return (
     <LinearGradient
       colors={weatherOptions[condition]?.gradient || defaultGradient}
@@ -15,41 +20,18 @@ const Weather = ({ condition, temp }) => {
       <StatusBar barStyle="light-content" />
       <HalfContainer>
         <MaterialCommunityIcons
-          name={weatherOptions[condition]?.iconName}
+          name={weatherOptions[condition]?.iconName as React.ComponentProps<typeof MaterialCommunityIcons>['name']}
           size={96}
           color="white"
         />
         <Temp>{temp}º</Temp>
       </HalfContainer>
-      <HalfContainer bottom>
+      <HalfContainer bottom={true}>
         <Title>{weatherOptions[condition]?.title}</Title>
         <SubTitle>{weatherOptions[condition]?.subtitle}</SubTitle>
       </HalfContainer>
     </LinearGradient>
   );
-};
-
-Weather.propTypes = {
-  condition: PropTypes.oneOf([
-    "",
-    "Thunderstorm",
-    "Drizzle",
-    "Rain",
-    "Snow",
-    "Atmosphere",
-    "Clear",
-    "Clouds",
-    "Mist",
-    "Dust",
-    "Haze",
-    "Smoke",
-    "Fog",
-    "Sand",
-    "Ash",
-    "Squall",
-    "Tornado",
-  ]).isRequired,
-  temp: PropTypes.number.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -58,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const HalfContainer = styled.View`
+const HalfContainer = styled.View<{bottom?: boolean}>`
   flex: 1;
   justify-content: center;
   align-items: center;
