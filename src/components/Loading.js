@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "@emotion/native";
 import { defaultGradient } from "../constants";
@@ -8,7 +8,12 @@ const Loading = () => {
   return (
     <LinearGradient colors={defaultGradient} style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <LoadingText>Getting the weather</LoadingText>
+      <HalfContainer>
+        <ActivityIndicator style={styles.spinner} color="fff" />
+      </HalfContainer>
+      <HalfContainer>
+        <LoadingText>Getting the weather</LoadingText>
+      </HalfContainer>
     </LinearGradient>
   );
 };
@@ -20,7 +25,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 100,
   },
+  spinner: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
 });
+
+const HalfContainer = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
 
 const LoadingText = styled.Text`
   color: #ffffff;
