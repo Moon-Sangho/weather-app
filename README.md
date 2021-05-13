@@ -19,5 +19,5 @@ For execute this application, you have to create your `API KEY` from below web-s
 https://openweathermap.org/
 
 1. Sign-up, and Create your API KEY.
-2. create constants file like => src/constants/index.js
-3. write `const WEATHER_API_KEY = 'your API KEY'`
+2. create file like => src/constants/API_KEY.js
+3. write `const WEATHER_API_KEY = 'your API KEY'` in API_KEY.js
