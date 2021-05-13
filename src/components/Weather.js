@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import styled from "@emotion/native";
 import { weatherOptions, defaultGradient } from "../constants";
 
 const Weather = ({ condition, temp }) => {
@@ -12,26 +13,25 @@ const Weather = ({ condition, temp }) => {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
-      <View style={styles.halfContainer}>
+      <HalfContainer>
         <MaterialCommunityIcons
           name={weatherOptions[condition]?.iconName}
           size={96}
           color="white"
         />
-        <Text style={styles.temp}>{temp}º</Text>
-      </View>
-      <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
-        <Text style={styles.title}>{weatherOptions[condition]?.title}</Text>
-        <Text style={styles.subtitle}>
-          {weatherOptions[condition]?.subtitle}
-        </Text>
-      </View>
+        <Temp>{temp}º</Temp>
+      </HalfContainer>
+      <HalfContainer bottom>
+        <Title>{weatherOptions[condition]?.title}</Title>
+        <SubTitle>{weatherOptions[condition]?.subtitle}</SubTitle>
+      </HalfContainer>
     </LinearGradient>
   );
 };
 
 Weather.propTypes = {
   condition: PropTypes.oneOf([
+    "",
     "Thunderstorm",
     "Drizzle",
     "Rain",
@@ -56,34 +56,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  temp: {
-    fontSize: 42,
-    color: "white",
-  },
-  halfContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    color: "white",
-    fontSize: 44,
-    fontWeight: "300",
-    marginBottom: 10,
-    textAlign: "left",
-  },
-  subtitle: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "600",
-    textAlign: "left",
-  },
-  textContainer: {
-    alignItems: "flex-start",
-    paddingHorizontal: 40,
-    justifyContent: "center",
-    flex: 1,
-  },
 });
+
+const HalfContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  ${({ bottom }) =>
+    bottom ? "align-items: flex-start; padding-left: 40px;" : ""};
+`;
+
+const Temp = styled.Text`
+  color: #ffffff;
+  font-size: 42px;
+`;
+
+const Title = styled.Text`
+  color: #ffffff;
+  font-size: 44px;
+  font-weight: 300;
+  margin-bottom: 10px;
+`;
+
+const SubTitle = styled.Text`
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+`;
 
 export default Weather;

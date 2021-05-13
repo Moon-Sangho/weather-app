@@ -97,4 +97,4 @@ export const weatherOptions = {
   },
 };
 
-export const defaultGradient = ["fff", "fff"];
+export const defaultGradient = ["#D7D2CC", "#304352"];

@@ -1,12 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import styled from "@emotion/native";
+import { defaultGradient } from "../constants";
 
 const Loading = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <Text style={styles.text}>Getting the weather</Text>
-    </View>
+    <LinearGradient colors={defaultGradient} style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      <LoadingText>Getting the weather</LoadingText>
+    </LinearGradient>
   );
 };
 
@@ -16,12 +19,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingHorizontal: 30,
     paddingVertical: 100,
-    backgroundColor: "#fdf6aa",
-  },
-  text: {
-    color: "#2c2c2c",
-    fontSize: 30,
   },
 });
+
+const LoadingText = styled.Text`
+  color: #ffffff;
+  font-size: 30px;
+`;
 
 export default Loading;

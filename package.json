@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@emotion/native": "^11.0.0",
+    "@emotion/react": "^11.4.0",
     "axios": "^0.21.1",
     "expo": "~41.0.1",
     "expo-linear-gradient": "~9.1.0",
