@@ -2,9 +2,9 @@ import React from "react";
 import { Alert } from "react-native";
 import axios from "axios";
 import * as Location from "expo-location";
-import Loading from "./Loading";
-import Weather from "./Weather";
-import { WEATHER_API_KEY } from "./constants";
+import Loading from "./src/components/Loading";
+import Weather from "./src/components/Weather";
+import { WEATHER_API_KEY } from "./src/constants";
 class App extends React.Component {
   state = {
     isLoading: true,
